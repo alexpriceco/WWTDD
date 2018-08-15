@@ -3,6 +3,7 @@ import styled, { injectGlobal } from 'styled-components'
 
 import Project from '../components/project'
 import ZigZag from '../assets/zigzag'
+import APCO from '../assets/apco'
 
 const Header = styled.div`
   width: 100vw;
@@ -64,6 +65,30 @@ const SectionDescription = styled.div`
   }
 `
 
+const Footer = styled.footer`
+  padding: 20px 100px;
+  width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  a {
+    opacity: 0.75;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    &:hover {
+      opacity: 1;
+      svg path { fill: #FBF9F4; }
+    }
+  }
+
+  svg {
+    width: 40px;
+    path { transition: all 0.2s ease; }
+  }
+`
+
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,500');
 
@@ -94,7 +119,7 @@ export default () => (
         <ZigZag />
       </ZigZagContainer>
     </Header>
-    <Section style={{ backgroundColor: '#0E204E' }}>
+    <Section style={{ borderRadius: '10px' }}>
       <SectionDescription>
         <h2>Right now.</h2>
         <p>This stuff is happening right now. You can walk over to my desk to get the latest work. Or a cute gif.</p>
@@ -131,6 +156,25 @@ export default () => (
         <p>This is either on hold for some reason, or I’m getting to it after the current thing. Does this list not look right? DM me (IRL?)</p>
       </SectionDescription>
 
+      <div>
+        <Project
+          title={'Reports Redux'}
+          summary={'This topic covers a redesign of the /reports interface, including something, another thing, and a third thing, all of which we believe will save companies shittons of cash.'}
+        />
+        <Project
+          title={'Index Page KPIs'}
+          summary={'Also referred to as Dashboards, these key performance indicators are perfect for anyone that NEEDS TO KNOW RIGHT NOW HOW MANY WELLS THO.'}
+        />
+      </div>
     </Section>
+
+    <Footer>
+      <a
+        title='Designed and built by Alex Price'
+        href='https://alexprice.co'
+      >
+        <APCO />
+      </a>
+    </Footer>
   </div>
 )

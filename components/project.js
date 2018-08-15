@@ -1,10 +1,18 @@
 import styled from 'styled-components'
 
 const Container = styled.div`
-  width: 50vw;
+  width: 45vw;
   margin-top: 20px;
   &:not(:last-of-type) {
     margin-bottom: 40px;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    line-height: 150%;
+    font-size: 16px;
   }
 `
 
@@ -68,6 +76,7 @@ const Link = styled.a`
   font-size: 16px;
   color: #FBF9F4;
   opacity: 1;
+  transition: all 0.2s ease;
 
   &[disabled] {
     pointer-events: none;
@@ -83,45 +92,52 @@ export default (props) => (
   <Container>
     <TitleRow>
       <h3>{props.title}</h3>
-      <div>
-        <Link
-          disabled={!props.airtable}
-          href={props.airtable || ''}
-        >Airtable</Link>
-        <Link
-          disabled={!props.figma}
-          href={props.figma || ''}
-        >Figma</Link>
-        <Link
-          disabled={!props.zeplin}
-          href={props.zeplin || ''}
-        >Zeplin</Link>
-        <Link
-          disabled={!props.github}
-          href={props.github || ''}
-        >Github</Link>
-      </div>
+      {props.summary ? null
+        : <div>
+          <Link
+            disabled={!props.airtable}
+            href={props.airtable || ''}
+          >Airtable</Link>
+          <Link
+            disabled={!props.figma}
+            href={props.figma || ''}
+          >Figma</Link>
+          <Link
+            disabled={!props.zeplin}
+            href={props.zeplin || ''}
+          >Zeplin</Link>
+          <Link
+            disabled={!props.github}
+            href={props.github || ''}
+          >Github</Link>
+        </div>
+      }
     </TitleRow>
 
-    <ProgressContainer>
-      <ProgressSection>
-        <ProgressBar>
-          <div style={{ width: `${props.progress.research || 0}%` }} />
-        </ProgressBar>
-        <span>Research</span>
-      </ProgressSection>
-      <ProgressSection>
-        <ProgressBar>
-          <div style={{ width: `${props.progress.production || 0}%` }} />
-        </ProgressBar>
-        <span>Production + feedback</span>
-      </ProgressSection>
-      <ProgressSection>
-        <ProgressBar>
-          <div style={{ width: `${props.progress.development || 0}%` }} />
-        </ProgressBar>
-        <span>Dev support</span>
-      </ProgressSection>
-    </ProgressContainer>
+    { props.summary
+      ? <p>
+        {props.summary}
+      </p>
+      : <ProgressContainer>
+        <ProgressSection>
+          <ProgressBar>
+            <div style={{ width: `${props.progress.research || 0}%` }} />
+          </ProgressBar>
+          <span>Research</span>
+        </ProgressSection>
+        <ProgressSection>
+          <ProgressBar>
+            <div style={{ width: `${props.progress.production || 0}%` }} />
+          </ProgressBar>
+          <span>Production + feedback</span>
+        </ProgressSection>
+        <ProgressSection>
+          <ProgressBar>
+            <div style={{ width: `${props.progress.development || 0}%` }} />
+          </ProgressBar>
+          <span>Dev support</span>
+        </ProgressSection>
+      </ProgressContainer>
+    }
   </Container>
 )
