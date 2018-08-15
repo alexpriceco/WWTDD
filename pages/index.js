@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import styled, { injectGlobal } from 'styled-components'
 
-import ZigZag from '../assets/zigzag.js'
+import Project from '../components/project'
+import ZigZag from '../assets/zigzag'
 
 const Header = styled.div`
   width: 100vw;
@@ -33,11 +34,34 @@ const ZigZagContainer = styled.div`
   }
 `
 
-const Currently = styled.div`
+const Section = styled.div`
   width: 100vw;
   padding: 100px;
+  box-sizing: border-box;
   background: #0E204E;
   color: #FBF9F4;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+`
+
+const SectionDescription = styled.div`
+  width: 28vw;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 48px;
+    font-weight: medium;
+  }
+
+  p {
+    font-size: 24px;
+    line-height: 150%;
+  }
 `
 
 injectGlobal`
@@ -70,8 +94,43 @@ export default () => (
         <ZigZag />
       </ZigZagContainer>
     </Header>
-    <Currently>
-      stuff
-    </Currently>
+    <Section style={{ backgroundColor: '#0E204E' }}>
+      <SectionDescription>
+        <h2>Right now.</h2>
+        <p>This stuff is happening right now. You can walk over to my desk to get the latest work. Or a cute gif.</p>
+      </SectionDescription>
+
+      <div>
+        <Project
+          title={'Tables'}
+          progress={{
+            research: 100,
+            production: 24
+          }}
+          airtable={'airtable link'}
+          figma={'figma link'}
+        />
+
+        <Project
+          title={'Drilling Spacing Units'}
+          progress={{
+            research: 100,
+            production: 100,
+            development: 25
+          }}
+          airtable={'airtable link'}
+          figma={'figma link'}
+          zeplin={'airtable link'}
+          github={'figma link'}
+        />
+      </div>
+    </Section>
+    <Section style={{ backgroundColor: '#040C22' }}>
+      <SectionDescription>
+        <h2>Up next.</h2>
+        <p>This is either on hold for some reason, or I’m getting to it after the current thing. Does this list not look right? DM me (IRL?)</p>
+      </SectionDescription>
+
+    </Section>
   </div>
 )
